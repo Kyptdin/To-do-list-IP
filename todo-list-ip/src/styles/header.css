@@ -1,0 +1,12 @@
+.todo-list-header {
+  background: linear-gradient(285deg, #00f3ff, #127aff, rgba(53, 36, 255, 1));
+  padding: 1.2rem 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.logo {
+  max-width: 20rem;
+}
