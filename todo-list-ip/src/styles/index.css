@@ -1,6 +1,7 @@
 @import "./logo.css";
 @import "./app.css";
 @import "./header.css";
+@import "./task.css";
 * {
   margin: 0;
   padding: 0;
