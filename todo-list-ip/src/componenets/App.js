@@ -1,7 +1,13 @@
+import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 export default function App() {
   return <Logo />;
 }
 
 function Logo() {
-  return <div className="logo">📝</div>;
+  return (
+    <React.Fragment>
+      <div className="logo">📝</div>
+    </React.Fragment>
+  );
 }
