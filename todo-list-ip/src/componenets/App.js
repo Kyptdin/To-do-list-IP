@@ -34,7 +34,15 @@ export default function App() {
         <main className="todo-list-app">
           {originalData &&
             originalData.length > 0 &&
-            originalData.map(<Task />)}
+            originalData.map((task, index) => (
+              <Task
+                originalData={originalData}
+                setOriginalData={setOriginalData}
+                taskData={task.data}
+                complete={task.complete}
+                key={index}
+              />
+            ))}
         </main>
       </div>
     </React.Fragment>

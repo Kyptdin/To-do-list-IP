@@ -1,6 +1,16 @@
 import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-export default function Task() {
+export default function Task({
+  originalData,
+  setOriginalData,
+  taskData,
+  complete,
+  key,
+}) {
+  function onTaskDataChange() {
+    setOriginalData(originalData.map((task) => task));
+  }
+
   return (
     <div className="todo-list-task">
       <div
