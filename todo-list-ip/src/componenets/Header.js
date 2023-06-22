@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./Nav.js";
-export default function Header() {
+export default function Header({ originalData, setOriginalData }) {
   return (
     <React.Fragment>
       <header className="todo-list-header">
@@ -10,7 +10,7 @@ export default function Header() {
           alt="todo-list"
         />
       </header>
-      <Nav />
+      <Nav originalData={originalData} setOriginalData={setOriginalData} />
     </React.Fragment>
   );
 }

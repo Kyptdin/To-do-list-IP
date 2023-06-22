@@ -4,9 +4,11 @@ import Header from "./Header";
 import Task from "./Task";
 
 export default function App() {
-  const [originalData, setOriginalData] = useState(
-    localStorage.getItem("tasks")
-  );
+  const [originalData, setOriginalData] = useState(getQuery());
+
+  function getQuery() {
+    return serializeData(localStorage.getItem("tasks"));
+  }
 
   function stringifyData(data) {
     return JSON.stringify(data);
@@ -28,9 +30,11 @@ export default function App() {
   return (
     <React.Fragment>
       <div className="app">
-        <Header />
+        <Header originalData={originalData} setOriginalData={setOriginalData} />
         <main className="todo-list-app">
-          <Task />
+          {originalData &&
+            originalData.length > 0 &&
+            originalData.map(<Task />)}
         </main>
       </div>
     </React.Fragment>

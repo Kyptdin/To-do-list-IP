@@ -20,7 +20,10 @@ export default function Task() {
             paddingTop: "0.5rem",
           }}
         />
-        <span className="todo-list-task-heading">Task name</span>
+        <input
+          className="todo-list-task-heading"
+          onChange={() => console.log("changing stuff")}
+        ></input>
       </div>
       <DeleteOutlinedIcon
         style={{

@@ -1,11 +1,12 @@
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-console.log(AddCircleOutlineOutlinedIcon);
-export default function Nav() {
+
+export default function Nav({ originalData, setOriginalData }) {
   return (
     <div className="todo-list-options">
       <div className="task-count">Task(1)</div>
       <div className="actions">
         <AddCircleOutlineOutlinedIcon
+          onClick={() => alert("You clicked the add button")}
           style={{
             fontSize: "2.5rem",
             cursor: "pointer",
