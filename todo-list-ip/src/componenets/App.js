@@ -10,6 +10,7 @@ function Logo() {
     <React.Fragment>
       <div className="app">
         <Header />
+        <main className="todo-list-app"></main>
       </div>
     </React.Fragment>
   );
