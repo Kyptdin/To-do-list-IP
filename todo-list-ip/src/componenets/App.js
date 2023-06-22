@@ -7,7 +7,9 @@ export default function App() {
 function Logo() {
   return (
     <React.Fragment>
-      <div className="logo">📝</div>
+      <div className="app">
+        <div className="logo">📝</div>
+      </div>
     </React.Fragment>
   );
 }
