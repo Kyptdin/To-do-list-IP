@@ -1,13 +1,30 @@
 import React from "react";
-// import DeleteIcon from "@mui/icons-material/Delete";
+import { useState } from "react";
 import Header from "./Header";
 import Task from "./Task";
 
 export default function App() {
-  return <Logo />;
-}
+  const [originalData, setOriginalData] = useState(
+    localStorage.getItem("tasks")
+  );
 
-function Logo() {
+  function stringifyData(data) {
+    return JSON.stringify(data);
+  }
+
+  function serializeData(data) {
+    return JSON.parse(data);
+  }
+
+  function createQuery(data) {
+    localStorage.setItem("tasks", stringifyData(data));
+  }
+
+  if (!originalData) {
+    alert("You didn't create the query yet");
+    createQuery([]);
+  }
+
   return (
     <React.Fragment>
       <div className="app">

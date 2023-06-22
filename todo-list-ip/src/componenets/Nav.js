@@ -14,7 +14,7 @@ export default function Nav() {
           }}
         />
         <select className="select-filther">
-          <option value="time">Filther by time</option>
+          <option value="time">Filther by order</option>
           <option value="completion">Filther by completion</option>
         </select>
       </div>
