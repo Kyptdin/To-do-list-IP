@@ -5,12 +5,9 @@ export default function Task({
   setOriginalData,
   taskData,
   complete,
-  key,
+  myKey,
+  createTask,
 }) {
-  function onTaskDataChange() {
-    setOriginalData(originalData.map((task) => task));
-  }
-
   return (
     <div className="todo-list-task">
       <div
@@ -21,6 +18,7 @@ export default function Task({
           gap: "1rem",
         }}
       >
+        {/* The circle used to check a task */}
         <RadioButtonUncheckedOutlinedIcon
           style={{
             fontSize: "3rem",
@@ -30,11 +28,16 @@ export default function Task({
             paddingTop: "0.5rem",
           }}
         />
-        <input
-          className="todo-list-task-heading"
-          onChange={() => console.log("changing stuff")}
-        ></input>
+        {/* Input element used to describe the task */}
+        <form>
+          <input
+            autoFocus={createTask}
+            className="todo-list-task-heading"
+            onChange={() => console.log("changing stuff")}
+          />
+        </form>
       </div>
+      {/* The icon used to delete the task */}
       <DeleteOutlinedIcon
         style={{
           fontSize: "3rem",

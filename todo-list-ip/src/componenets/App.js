@@ -5,6 +5,7 @@ import Task from "./Task";
 
 export default function App() {
   const [originalData, setOriginalData] = useState(getQuery());
+  const [creatingTask, setCreatingTask] = useState(false);
 
   function getQuery() {
     return serializeData(localStorage.getItem("tasks"));
@@ -30,7 +31,12 @@ export default function App() {
   return (
     <React.Fragment>
       <div className="app">
-        <Header originalData={originalData} setOriginalData={setOriginalData} />
+        <Header
+          originalData={originalData}
+          setOriginalData={setOriginalData}
+          creatingTask={creatingTask}
+          setCreatingTask={setCreatingTask}
+        />
         <main className="todo-list-app">
           {originalData &&
             originalData.length > 0 &&
@@ -41,8 +47,11 @@ export default function App() {
                 taskData={task.data}
                 complete={task.complete}
                 key={index}
+                myKey={index}
+                createTask={false}
               />
             ))}
+          {creatingTask && <Task createTask={true} />}
         </main>
       </div>
     </React.Fragment>
