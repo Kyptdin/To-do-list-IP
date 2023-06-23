@@ -11,22 +11,23 @@ export default function App() {
     return serializeData(localStorage.getItem("tasks"));
   }
 
-  function stringifyData(data) {
-    return JSON.stringify(data);
-  }
-
   function serializeData(data) {
     return JSON.parse(data);
   }
 
-  function createQuery(data) {
-    localStorage.setItem("tasks", stringifyData(data));
+  function updateQuery(data) {
+    localStorage.setItem("tasks", JSON.stringify(data));
   }
 
-  if (!originalData) {
-    alert("You didn't create the query yet");
-    createQuery([]);
-  }
+  // function stringifyData(data) {
+  //   return JSON.stringify(data);
+  // }
+
+  // if (!originalData) {
+  //   alert("You didn't create the query yet");
+  //   createQuery([]);
+  //   setOriginalData(getQuery());
+  // }
 
   return (
     <React.Fragment>
@@ -44,14 +45,22 @@ export default function App() {
               <Task
                 originalData={originalData}
                 setOriginalData={setOriginalData}
-                taskData={task.data}
-                complete={task.complete}
+                taskData={task.taskInfo}
+                complete={task.completed}
                 key={index}
                 myKey={index}
+                updateQuery={updateQuery}
                 createTask={false}
               />
             ))}
-          {creatingTask && <Task createTask={true} />}
+          {creatingTask && (
+            <Task
+              originalData={originalData}
+              setOriginalData={setOriginalData}
+              updateQuery={updateQuery}
+              createTask={true}
+            />
+          )}
         </main>
       </div>
     </React.Fragment>

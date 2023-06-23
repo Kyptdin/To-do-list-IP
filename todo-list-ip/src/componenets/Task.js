@@ -1,5 +1,6 @@
 import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import { useState } from "react";
 export default function Task({
   originalData,
   setOriginalData,
@@ -7,7 +8,31 @@ export default function Task({
   complete,
   myKey,
   createTask,
+  updateQuery,
+  setCreatingTask,
 }) {
+  const [completed, setCompleted] = useState(false);
+  const [taskInfo, setTaskInfo] = useState(null);
+
+  function onSubmitData(e) {
+    e.preventDefault();
+    console.log("Submitting data");
+    /*
+    Create an object to represent the data of the task
+    Add the task object to the tasks array 
+    Update the locale storage for the tasks 
+
+    if(the task is used to creat other task){
+      manipulate the state to create another task creator 
+    }    
+    */
+    const obj = { completed, taskInfo };
+    if (!originalData || originalData.length === 0) {
+      setOriginalData([obj]);
+    }
+    console.log(originalData);
+  }
+
   return (
     <div className="todo-list-task">
       <div
@@ -29,7 +54,7 @@ export default function Task({
           }}
         />
         {/* Input element used to describe the task */}
-        <form>
+        <form onSubmit={onSubmitData}>
           <input
             autoFocus={createTask}
             className="todo-list-task-heading"
