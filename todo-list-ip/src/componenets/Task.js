@@ -11,7 +11,7 @@ export default function Task({
   createTask,
 }) {
   const [completed, setCompleted] = useState(createTask ? false : complete);
-  const [taskInfo, setTaskInfo] = useState(createTask ? false : taskData);
+  const [taskInfo, setTaskInfo] = useState(createTask ? "" : taskData);
   const iconStyling = {
     fontSize: "3rem",
     cursor: "pointer",
@@ -26,6 +26,26 @@ export default function Task({
 
   function handleTaskInfoChange(e) {
     setTaskInfo(e.target.value);
+  }
+
+  function fixUnexistingArray(allTaskData) {
+    if (
+      !allTaskData ||
+      allTaskData.length === 0 ||
+      !(typeof allTaskData !== "object")
+    ) {
+      const task = { completed, taskInfo, id: 0 };
+      const arr = [task];
+      localStorage.setItem("tasks", JSON.stringify(arr));
+      setOriginalData(arr);
+    }
+  }
+
+  function handleTaskInfoSubmit(e) {
+    e.preventDefault();
+    if (createTask) {
+      fixUnexistingArray(originalData);
+    }
   }
 
   return (
@@ -51,8 +71,9 @@ export default function Task({
           />
         )}
         {/* Input element used to describe the task */}
-        <form>
+        <form onSubmit={handleTaskInfoSubmit}>
           <input
+            value={taskInfo}
             autoFocus={createTask}
             className={`todo-list-task-heading ${completed ? "completed" : ""}`}
             onChange={handleTaskInfoChange}
