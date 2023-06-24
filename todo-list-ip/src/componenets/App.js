@@ -15,18 +15,9 @@ export default function App() {
     return JSON.parse(data);
   }
 
-  function updateQuery(data) {
-    localStorage.setItem("tasks", JSON.stringify(data));
-  }
-
-  // function stringifyData(data) {
-  //   return JSON.stringify(data);
-  // }
-
-  // if (!originalData) {
-  //   alert("You didn't create the query yet");
-  //   createQuery([]);
-  //   setOriginalData(getQuery());
+  // JUST DO THIS WITHOUT THE FUNCTIONS
+  // function updateQuery(data) {
+  //   localStorage.setItem("tasks", JSON.stringify(data));
   // }
 
   return (
@@ -49,16 +40,18 @@ export default function App() {
                 complete={task.completed}
                 key={index}
                 myKey={index}
-                updateQuery={updateQuery}
-                createTask={false}
+                createTask={false} //Means this componenet isn't creating new tasks
               />
             ))}
           {creatingTask && (
             <Task
               originalData={originalData}
               setOriginalData={setOriginalData}
-              updateQuery={updateQuery}
-              createTask={true}
+              // taskData={task.taskInfo}
+              // complete={task.completed}
+              // key={index}
+              // myKey={index}
+              createTask={true} //Means that this componenet is used to create a task
             />
           )}
         </main>

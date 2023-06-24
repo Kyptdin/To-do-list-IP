@@ -8,11 +8,9 @@ export default function Task({
   complete,
   myKey,
   createTask,
-  updateQuery,
-  setCreatingTask,
 }) {
-  const [completed, setCompleted] = useState(false);
-  const [taskInfo, setTaskInfo] = useState(null);
+  const [completed, setCompleted] = useState(createTask ? false : complete);
+  const [taskInfo, setTaskInfo] = useState(createTask ? false : taskData);
 
   function onSubmitData(e) {
     e.preventDefault();
