@@ -1,5 +1,6 @@
 import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { useState } from "react";
 export default function Task({
   originalData,
@@ -11,24 +12,16 @@ export default function Task({
 }) {
   const [completed, setCompleted] = useState(createTask ? false : complete);
   const [taskInfo, setTaskInfo] = useState(createTask ? false : taskData);
+  const iconStyling = {
+    fontSize: "3rem",
+    cursor: "pointer",
+    background: "none",
+    border: "none",
+    paddingTop: "0.5rem",
+  };
 
-  function onSubmitData(e) {
-    e.preventDefault();
-    console.log("Submitting data");
-    /*
-    Create an object to represent the data of the task
-    Add the task object to the tasks array 
-    Update the locale storage for the tasks 
-
-    if(the task is used to creat other task){
-      manipulate the state to create another task creator 
-    }    
-    */
-    const obj = { completed, taskInfo };
-    if (!originalData || originalData.length === 0) {
-      setOriginalData([obj]);
-    }
-    console.log(originalData);
+  function handleCheckClick() {
+    setCompleted((completed) => !completed);
   }
 
   return (
@@ -42,20 +35,22 @@ export default function Task({
         }}
       >
         {/* The circle used to check a task */}
-        <RadioButtonUncheckedOutlinedIcon
-          style={{
-            fontSize: "3rem",
-            cursor: "pointer",
-            background: "none",
-            border: "none",
-            paddingTop: "0.5rem",
-          }}
-        />
+        {!completed ? (
+          <RadioButtonUncheckedOutlinedIcon
+            style={iconStyling}
+            onClick={handleCheckClick}
+          />
+        ) : (
+          <CheckCircleOutlinedIcon
+            style={iconStyling}
+            onClick={handleCheckClick}
+          />
+        )}
         {/* Input element used to describe the task */}
-        <form onSubmit={onSubmitData}>
+        <form>
           <input
             autoFocus={createTask}
-            className="todo-list-task-heading"
+            className={`todo-list-task-heading ${completed ? "completed" : ""}`}
             onChange={() => console.log("changing stuff")}
           />
         </form>
