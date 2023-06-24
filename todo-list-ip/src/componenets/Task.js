@@ -24,6 +24,10 @@ export default function Task({
     setCompleted((completed) => !completed);
   }
 
+  function handleTaskInfoChange(e) {
+    setTaskInfo(e.target.value);
+  }
+
   return (
     <div className="todo-list-task">
       <div
@@ -51,7 +55,7 @@ export default function Task({
           <input
             autoFocus={createTask}
             className={`todo-list-task-heading ${completed ? "completed" : ""}`}
-            onChange={() => console.log("changing stuff")}
+            onChange={handleTaskInfoChange}
           />
         </form>
       </div>
