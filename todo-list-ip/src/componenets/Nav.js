@@ -9,7 +9,9 @@ export default function Nav({
   return (
     <div className="todo-list-options">
       {/* How many total task */}
-      <div className="task-count">Task(1)</div>
+      <div className="task-count">
+        Task({originalData ? originalData.length : 0})
+      </div>
       <div className="actions">
         {/* The add button to add a task */}
         <AddCircleOutlineOutlinedIcon
@@ -22,10 +24,10 @@ export default function Nav({
           }}
         />
         {/* Select used to determine the filther of the application */}
-        <select className="select-filther">
+        {/* <select className="select-filther">
           <option value="time">Filther by order</option>
           <option value="completion">Filther by completion</option>
-        </select>
+        </select> */}
       </div>
     </div>
   );
