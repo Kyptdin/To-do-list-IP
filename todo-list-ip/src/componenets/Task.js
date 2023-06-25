@@ -2,7 +2,7 @@ import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUnc
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { useState } from "react";
-import { create } from "@mui/material/styles/createTransitions";
+// import { create } from "@mui/material/styles/createTransitions";
 export default function Task({
   originalData,
   setOriginalData,
@@ -10,6 +10,8 @@ export default function Task({
   complete,
   myKey,
   createTask,
+  creatingTask,
+  setCreatingTask,
 }) {
   // const [completed, setCompleted] = useState(createTask ? false : complete);
   // const [taskInfo, setTaskInfo] = useState(createTask ? "" : taskData);
@@ -77,11 +79,10 @@ export default function Task({
     // Data does exist and the componenet is used to create other componenets
     if (createTask) {
       console.log("Second statement");
-      console.log(originalData);
       const task = { completed, taskInfo, id: originalData.length };
       const arr = originalData.map((el) => el);
-      const newArr = arr.push(task);
-      console.log(newArr);
+      arr.push(task);
+      console.log(arr);
       localStorage.setItem("tasks", JSON.stringify(arr));
       setOriginalData(arr);
       resetState();
@@ -92,6 +93,31 @@ export default function Task({
   function handleTaskInfoSubmit(e) {
     e.preventDefault();
     addTask(originalData);
+  }
+
+  function fixDataIndexing(data, deletedIndex) {
+    if (data.length === 0) return data;
+    return data.map((el) => {
+      return {
+        completed: el.completed,
+        taskInfo: el.taskInfo,
+        id: el.id < deletedIndex ? el.id : el.id - 1,
+      };
+    });
+  }
+
+  function handleDeleteBtnClick() {
+    if (createTask) {
+      console.log("Works I guess");
+      setCreatingTask((creatingTask) => !creatingTask);
+      return;
+    }
+
+    //Find the index of the object
+    const index = myKey;
+    const newArr = fixDataIndexing(originalData.toSpliced(index, 1), index);
+    localStorage.setItem("tasks", JSON.stringify(newArr));
+    setOriginalData((originalData) => newArr);
   }
 
   return (
@@ -127,16 +153,18 @@ export default function Task({
         </form>
       </div>
       {/* The icon used to delete the task */}
-      <DeleteOutlinedIcon
-        style={{
-          fontSize: "3rem",
-          cursor: "pointer",
-          background: "none",
-          border: "none",
-          paddingTop: "0.5rem",
-          color: "#127aff",
-        }}
-      />
+      <div>
+        <DeleteOutlinedIcon
+          style={{
+            fontSize: "3rem",
+            cursor: "pointer",
+            background: "none",
+            border: "none",
+            paddingTop: "0.5rem",
+            color: "#127aff",
+          }}
+        />
+      </div>
     </div>
   );
 }

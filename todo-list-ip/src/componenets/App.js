@@ -31,7 +31,6 @@ export default function App() {
         />
         <main className="todo-list-app">
           {originalData &&
-            originalData.length > 0 &&
             originalData.map((task, index) => (
               <Task
                 originalData={originalData}
@@ -41,17 +40,21 @@ export default function App() {
                 key={index}
                 myKey={index}
                 createTask={false} //Means this componenet isn't creating new tasks
+                creatingTask={creatingTask}
+                setCreatingTask={setCreatingTask}
               />
             ))}
           {creatingTask && (
             <Task
               originalData={originalData}
               setOriginalData={setOriginalData}
-              // taskData={task.taskInfo}
-              // complete={task.completed}
+              taskData={""}
+              complete={false}
               // key={index}
               // myKey={index}
               createTask={true} //Means that this componenet is used to create a task
+              creatingTask={creatingTask}
+              setCreatingTask={setCreatingTask}
             />
           )}
         </main>
