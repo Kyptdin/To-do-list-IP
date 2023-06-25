@@ -117,16 +117,17 @@ export default function Task({
     console.log("The task button isn't a task creation thing");
     //Find the index of the object
     const index = myKey;
-    console.log(`The index of the object is ${index}`);
-    const newArr = fixDataIndexing(originalData.toSpliced(index, 1), index);
-    console.log("New array below");
-    console.log(newArr);
-    // localStorage.setItem("tasks", JSON.stringify(newArr));
-    // console.log("The new local storage is below");
-    // console.log(JSON.parse(localStorage.getItem("tasks")));
-    // console.log("The old original data is below");
-    // console.log(originalData);
-    setOriginalData(newArr);
+    console.log(`Index is ${index}`);
+    console.log("New array is below");
+    const newArr = originalData.filter((el) => el.id !== index);
+    const adjustedArr = newArr.map((el, i) => {
+      return {
+        completed: el.completed,
+        taskInfo: el.taskInfo,
+        id: i,
+      };
+    });
+    setOriginalData(adjustedArr);
   }
 
   return (
@@ -162,9 +163,8 @@ export default function Task({
         </form>
       </div>
       {/* The icon used to delete the task */}
-      <div>
+      <div onClick={handleDeleteBtnClick}>
         <DeleteOutlinedIcon
-          onClick={handleDeleteBtnClick}
           style={{
             fontSize: "3rem",
             cursor: "pointer",
