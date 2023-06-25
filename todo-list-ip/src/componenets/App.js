@@ -20,6 +20,8 @@ export default function App() {
   //   localStorage.setItem("tasks", JSON.stringify(data));
   // }
 
+  localStorage.setItem("tasks", JSON.stringify(originalData));
+
   return (
     <React.Fragment>
       <div className="app">

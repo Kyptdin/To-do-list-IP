@@ -107,17 +107,26 @@ export default function Task({
   }
 
   function handleDeleteBtnClick() {
+    console.log("You have clicked the element");
     if (createTask) {
       console.log("Works I guess");
       setCreatingTask((creatingTask) => !creatingTask);
       return;
     }
 
+    console.log("The task button isn't a task creation thing");
     //Find the index of the object
     const index = myKey;
+    console.log(`The index of the object is ${index}`);
     const newArr = fixDataIndexing(originalData.toSpliced(index, 1), index);
-    localStorage.setItem("tasks", JSON.stringify(newArr));
-    setOriginalData((originalData) => newArr);
+    console.log("New array below");
+    console.log(newArr);
+    // localStorage.setItem("tasks", JSON.stringify(newArr));
+    // console.log("The new local storage is below");
+    // console.log(JSON.parse(localStorage.getItem("tasks")));
+    // console.log("The old original data is below");
+    // console.log(originalData);
+    setOriginalData(newArr);
   }
 
   return (
@@ -155,6 +164,7 @@ export default function Task({
       {/* The icon used to delete the task */}
       <div>
         <DeleteOutlinedIcon
+          onClick={handleDeleteBtnClick}
           style={{
             fontSize: "3rem",
             cursor: "pointer",
