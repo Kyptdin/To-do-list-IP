@@ -95,17 +95,6 @@ export default function Task({
     addTask(originalData);
   }
 
-  function fixDataIndexing(data, deletedIndex) {
-    if (data.length === 0) return data;
-    return data.map((el) => {
-      return {
-        completed: el.completed,
-        taskInfo: el.taskInfo,
-        id: el.id < deletedIndex ? el.id : el.id - 1,
-      };
-    });
-  }
-
   function handleDeleteBtnClick() {
     console.log("You have clicked the element");
     if (createTask) {
@@ -120,6 +109,7 @@ export default function Task({
     console.log(`Index is ${index}`);
     console.log("New array is below");
     const newArr = originalData.filter((el) => el.id !== index);
+    //possible issue
     const adjustedArr = newArr.map((el, i) => {
       return {
         completed: el.completed,
