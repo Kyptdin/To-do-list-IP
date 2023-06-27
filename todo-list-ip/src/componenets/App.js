@@ -30,14 +30,14 @@ export default function App() {
         </Header>
         <main className="todo-list-app">
           {originalData &&
-            originalData.map((task, index) => (
+            originalData.map((task) => (
               <Task
                 originalData={originalData}
                 setOriginalData={setOriginalData}
                 taskData={task.taskInfo}
                 complete={task.completed}
-                key={index}
-                myKey={index}
+                key={task.id}
+                myKey={task.id}
                 createTask={false} //Means this componenet isn't creating new tasks
                 creatingTask={creatingTask}
                 setCreatingTask={setCreatingTask}

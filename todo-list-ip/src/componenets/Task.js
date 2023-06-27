@@ -2,6 +2,7 @@ import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUnc
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { useState } from "react";
+import { nanoid } from "nanoid";
 // import { create } from "@mui/material/styles/createTransitions";
 export default function Task({
   originalData,
@@ -67,7 +68,7 @@ export default function Task({
     // There exist no data yet becasue the user hasn't used the app
     if (!allTaskData || allTaskData.length === 0) {
       console.log("First statement");
-      const task = { completed, taskInfo, id: 0 };
+      const task = { completed, taskInfo, id: nanoid() };
       const arr = [task];
       console.log(arr);
       localStorage.setItem("tasks", JSON.stringify(arr));
@@ -79,7 +80,7 @@ export default function Task({
     // Data does exist and the componenet is used to create other componenets
     if (createTask) {
       console.log("Second statement");
-      const task = { completed, taskInfo, id: originalData.length };
+      const task = { completed, taskInfo, id: nanoid() };
       const arr = originalData.map((el) => el);
       arr.push(task);
       console.log(arr);
