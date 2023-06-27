@@ -17,6 +17,10 @@ export default function App() {
     localStorage.setItem("tasks", JSON.stringify(originalData));
   }, [originalData]);
 
+  function addTask(taskObj) {
+    setCreatingTask(...originalData, taskObj);
+  }
+
   return (
     <React.Fragment>
       <div className="app">
@@ -41,6 +45,7 @@ export default function App() {
                 createTask={false} //Means this componenet isn't creating new tasks
                 creatingTask={creatingTask}
                 setCreatingTask={setCreatingTask}
+                addTask={addTask}
               />
             ))}
           {creatingTask && (

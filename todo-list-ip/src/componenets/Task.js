@@ -13,6 +13,7 @@ export default function Task({
   createTask,
   creatingTask,
   setCreatingTask,
+  addTask,
 }) {
   // const [completed, setCompleted] = useState(createTask ? false : complete);
   // const [taskInfo, setTaskInfo] = useState(createTask ? "" : taskData);
@@ -64,36 +65,34 @@ export default function Task({
     setTaskInfo(e.target.value);
   }
 
-  function addTask(allTaskData) {
+  function addTask() {
     // There exist no data yet becasue the user hasn't used the app
-    if (!allTaskData || allTaskData.length === 0) {
-      console.log("First statement");
-      const task = { completed, taskInfo, id: nanoid() };
-      const arr = [task];
-      console.log(arr);
-      localStorage.setItem("tasks", JSON.stringify(arr));
-      setOriginalData(arr);
-      resetState();
-      return;
-    }
+    // if (!allTaskData || allTaskData.length === 0) {
+    //   console.log("First statement");
+    //   const task = { completed, taskInfo, id: nanoid() };
+    //   setOriginalData(task, ...originalData);
+    //   resetState();
+    //   return;
+    // }
 
-    // Data does exist and the componenet is used to create other componenets
-    if (createTask) {
-      console.log("Second statement");
-      const task = { completed, taskInfo, id: nanoid() };
-      const arr = originalData.map((el) => el);
-      arr.push(task);
-      console.log(arr);
-      localStorage.setItem("tasks", JSON.stringify(arr));
-      setOriginalData(arr);
-      resetState();
-      return;
-    }
+    // // Data does exist and the componenet is used to create other componenets
+    // if (createTask) {
+    //   console.log("Second statement");
+    //   const task = { completed, taskInfo, myKey };
+    //   const arr = originalData.map((el) => el);
+    //   arr.push(task);
+    //   setOriginalData(taks);
+    //   resetState();
+    //   return;
+    // }
+    const task = { completed, taskInfo, id: nanoid() };
+    addTask(task);
+    resetState();
   }
 
   function handleTaskInfoSubmit(e) {
     e.preventDefault();
-    addTask(originalData);
+    addTask();
   }
 
   function handleDeleteBtnClick() {
