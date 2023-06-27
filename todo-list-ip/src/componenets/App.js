@@ -59,6 +59,12 @@ export default function App() {
               setCreatingTask={setCreatingTask}
             />
           )}
+          {/* 
+          IDEA  
+            Instead of setting the state based on "taskData," I should just set the input el value based on the prop. 
+          
+          
+          */}
         </main>
       </div>
     </React.Fragment>
