@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Header from "./Header";
 import Task from "./Task";
+import Nav from "./Nav";
 
 export default function App() {
   const [creatingTask, setCreatingTask] = useState(false);
@@ -19,12 +20,14 @@ export default function App() {
   return (
     <React.Fragment>
       <div className="app">
-        <Header
-          originalData={originalData}
-          setOriginalData={setOriginalData}
-          creatingTask={creatingTask}
-          setCreatingTask={setCreatingTask}
-        />
+        <Header>
+          <Nav
+            originalData={originalData}
+            setOriginalData={setOriginalData}
+            creatingTask={creatingTask}
+            setCreatingTask={setCreatingTask}
+          />
+        </Header>
         <main className="todo-list-app">
           {originalData &&
             originalData.map((task, index) => (

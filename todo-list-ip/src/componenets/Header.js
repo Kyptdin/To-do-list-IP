@@ -1,11 +1,6 @@
 import React from "react";
-import Nav from "./Nav.js";
-export default function Header({
-  originalData,
-  setOriginalData,
-  creatingTask,
-  setCreatingTask,
-}) {
+
+export default function Header({ children }) {
   return (
     <React.Fragment>
       <header className="todo-list-header">
@@ -15,12 +10,7 @@ export default function Header({
           alt="todo-list"
         />
       </header>
-      <Nav
-        originalData={originalData}
-        setOriginalData={setOriginalData}
-        creatingTask={creatingTask}
-        setCreatingTask={setCreatingTask}
-      />
+      {children}
     </React.Fragment>
   );
 }
