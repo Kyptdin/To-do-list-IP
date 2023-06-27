@@ -1,26 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Header from "./Header";
 import Task from "./Task";
 
 export default function App() {
-  const [originalData, setOriginalData] = useState(getQuery());
   const [creatingTask, setCreatingTask] = useState(false);
+  const [originalData, setOriginalData] = useState(() => {
+    const localValue = localStorage.getItem("tasks");
+    if (!localValue) return [];
 
-  function getQuery() {
-    return serializeData(localStorage.getItem("tasks"));
-  }
+    return JSON.parse(localValue);
+  });
 
-  function serializeData(data) {
-    return JSON.parse(data);
-  }
-
-  // JUST DO THIS WITHOUT THE FUNCTIONS
-  // function updateQuery(data) {
-  //   localStorage.setItem("tasks", JSON.stringify(data));
-  // }
-
-  localStorage.setItem("tasks", JSON.stringify(originalData));
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(originalData));
+  }, [originalData]);
 
   return (
     <React.Fragment>
